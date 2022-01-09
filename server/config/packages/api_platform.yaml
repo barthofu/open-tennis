@@ -1,4 +1,7 @@
 api_platform:
+    title: 'Open Tennis REST API'
+    description: "API REST de l'application Open Tennis pour le module de CPOA."
+    version: '1.0.0'
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
     patch_formats:
