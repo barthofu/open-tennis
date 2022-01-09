@@ -2,21 +2,20 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\VIPRepository;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
  *      collectionOperations = { "get" },
- *      itemOperations = { "get" },
- *      normalizationContext = { "groups" = { "vip:read" } },
- *      denormalizationContext = { "groups" = { "vip:write" } }
+ *      itemOperations = { "get" }
  * )
- * @ORM\Entity(repositoryClass=VIPRepository::class)
+ * 
+ * @ORM\Entity
+ * 
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({"joueur" = "Joueur", "accompagnant" = "Accompagnant"})
@@ -27,50 +26,38 @@ class Vip
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * 
-     * @Groups("vip:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
-     * 
-     * @Groups({"vip:read", "vip:write"})
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=30)
-     * 
-     * @Groups({"vip:read", "vip:write"})
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
-     * 
-     * @Groups({"vip:read", "vip:write"})
      */
     private $nationalite;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
-     * 
-     * @Groups({"vip:read", "vip:write"})
      */
     private $age;
 
     /**
      * @ORM\Column(type="string", length=2000, nullable=true)
-     * 
-     * @Groups({"vip:read", "vip:write"})
      */
     private $description;
 
     /**
      * @ORM\OneToMany(targetEntity=Suivis::class, mappedBy="vip", orphanRemoval=true)
      * 
-     * @Groups({"vip:read"})
+     * @ApiSubresource
      */
     private $suivis;
 
@@ -175,18 +162,33 @@ class Vip
     }
 }
 
+
+
 /**
+ * @ApiResource
+ * 
  * @ORM\Entity
+ * 
  */
 class Joueur extends Vip 
 {
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
-     * 
-     * @Groups({ "vip:read", "vip:write" })
      */
     private $classementATP;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Accompagnant::class, mappedBy="accompagne", orphanRemoval=true)
+     * 
+     * @ApiSubresource
+     */
+    private $accompagnants;
+
+    public function __construct()
+    {
+        $this->suivis = new ArrayCollection();
+    }
 
     public function getClassementATP(): ?int
     {
@@ -199,11 +201,65 @@ class Joueur extends Vip
 
         return $this;
     }
+
+     /**
+     * @return Collection|Accompagnant[]
+     */
+    public function getAccompagnants(): Collection
+    {
+        return $this->accompagnants;
+    }
+
+    public function addAccompagnant(Accompagnant $accompagnant): self
+    {
+        if (!$this->accompagnants->contains($accompagnant)) {
+            $this->accompagnants[] = $accompagnant;
+            $accompagnant->setAccompagne($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccompagnant(Accompagnant $accompagnant): self
+    {
+        if ($this->accompagnants->removeElement($accompagnant)) {
+            // set the owning side to null (unless already changed)
+            if ($accompagnant->getAccompagne() === $this) {
+                $accompagnant->setAccompagne(null);
+            }
+        }
+
+        return $this;
+    }
 }
 
+
+
 /**
+ * @ApiResource
+ * 
  * @ORM\Entity
  */
 class Accompagnant extends Vip 
 {
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Joueur::class, inversedBy="accompagnants")
+     * @ORM\JoinColumn(nullable=true)
+     * 
+     * @ApiSubresource
+     */
+    private $accompagne;
+
+    public function getAccompagne(): ?Joueur
+    {
+        return $this->accompagne;
+    }
+
+    public function setAccompagne(?Joueur $joueur): self
+    {
+        $this->accompagne = $joueur;
+
+        return $this;
+    }
 }

@@ -3,16 +3,17 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Repository\SuivisRepository;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
- *      normalizationContext = { "groups" = { "suivis:read" } },
- *      denormalizationContext = { "groups" = { "suivis:write" } }
+ *      collectionOperations = { "get" },
+ *      itemOperations = { "get" }
  * )
- * @ORM\Entity(repositoryClass=SuivisRepository::class)
+ * 
+ * @ORM\Entity
  * 
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
@@ -23,36 +24,30 @@ class Suivis
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     * 
-     * @Groups({"suivis:read", "vip:read"})
+     * @ORM\Column(type="integer") 
      */
     private $id;
 
     /**
      * @ORM\Column(type="datetime_immutable")
-     * 
-     * @Groups({"suivis:read", "vip:read"})
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="string", length=4000, nullable=true)
-     * 
-     * @Groups({"suivis:read", "suivis:read", "vip:read"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
-     * @Groups({"suivis:read", "suivis:write", "vip:read"})
      */
     private $title;
 
     /**
      * @ORM\ManyToOne(targetEntity=Vip::class, inversedBy="suivis")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
+     * 
+     * @ApiSubresource
      */
     private $vip;
 
@@ -120,6 +115,8 @@ class Suivis
 
 
 /**
+ * @ApiResource
+ * 
  * @ORM\Entity
  */
 class Echange extends Suivis 
@@ -127,8 +124,6 @@ class Echange extends Suivis
 
     /**
      * @ORM\Column(type="string", columnDefinition="ENUM('mail', 'tel', 'fax', 'irl')")
-     * 
-     * @Groups({"suivis:read", "suivis:write", "vip:read"})
      */
     private $sources;
     
@@ -148,6 +143,8 @@ class Echange extends Suivis
 
 
 /**
+ * @ApiResource
+ * 
  * @ORM\Entity
  */
 class Action extends Suivis 
@@ -155,8 +152,6 @@ class Action extends Suivis
 
     /**
      * @ORM\Column(type="string", columnDefinition="ENUM('opened', 'closed')")
-     * 
-     * @Groups({"suivis:read", "suivis:write", "vip:read"})
      */
     private $statut;
 
