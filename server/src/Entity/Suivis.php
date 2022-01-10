@@ -51,6 +51,12 @@ class Suivis
      */
     private $vip;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Responsable::class, inversedBy="suivis")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $responsable;
+
 
     public function __construct()
     {
@@ -106,6 +112,18 @@ class Suivis
     public function setVip(?Vip $vip): self
     {
         $this->vip = $vip;
+
+        return $this;
+    }
+
+    public function getResponsable(): ?Responsable
+    {
+        return $this->responsable;
+    }
+
+    public function setResponsable(?Responsable $responsable): self
+    {
+        $this->responsable = $responsable;
 
         return $this;
     }
