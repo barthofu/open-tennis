@@ -1,0 +1,26 @@
+.container {
+    background: #23243d;
+    display: flex;
+    flex-direction: column;
+    padding: 1vh 0 2vh 1vw;
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    h1 {
+        color: #d9dae5;
+        font-family: "Tw Cen MTStd", sans-serif;
+        font-size: 0.65vw;
+        padding: 1rem;
+    }
+
+    a {
+        color: #757487;
+        font-family: "Tw Cen MTStd", sans-serif;
+        padding: 1rem;
+        font-weight: 700;
+        font-size: 0.8vw;
+    }
+}
