@@ -54,6 +54,8 @@ class Suivis
     /**
      * @ORM\ManyToOne(targetEntity=Responsable::class, inversedBy="suivis")
      * @ORM\JoinColumn(nullable=false)
+     * 
+     * @ApiSubresource
      */
     private $responsable;
 

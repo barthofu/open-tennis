@@ -35,8 +35,8 @@ services:
     ports:
       - "8741:8000"
     volumes:
+        - ./:/var/www:cached
         - ./.docker/php/vhosts:/etc/apache2/sites-enabled
-        - ./:/var/www
     restart: always
     networks:
         - dev
