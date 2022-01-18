@@ -1,11 +1,8 @@
 import Axios from 'axios'
-import baseURL from '@configs/connection'
-import createAuthRefreshInterceptor from 'axios-auth-refresh'
-const cookieCutter = require('cookie-cutter')
-
+import { baseURL } from '@configs/connections'
 
 const axios = Axios.create({
-    baseURL,
+    baseURL: baseURL + '/api',
     withCredentials: true
 })
 

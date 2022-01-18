@@ -1,7 +1,7 @@
-import Cookies from 'cookies'
-import url from 'url'
 import axios from 'axios'
 import cookie from 'cookie'
+import { apiURL } from '@configs/connections'
+import cookieConfig from '@configs/cookie'
 
 export const config = {
 	api: {
@@ -11,16 +11,11 @@ export const config = {
 
 export default async function handler (req, res) {
 
-	const headers = {}
-	const pathname = url.parse(req.url).pathname
-	const isLogin = pathname === '/api/proxy/login'
-
-	console.log(req.cookies)
-	const token = null
-
+	const headers = {},
+		  { token } = req.cookies
+		  
 	// re-écriture de l'URL
-	let path = req.url.replace(/^\/proxy/, '')
-	if (isLogin) path = '/auth/login'
+	const url = req.url.replace('proxy/', '')
 
 	// on définit le header d'autorisation
 	if (token) {
@@ -30,42 +25,56 @@ export default async function handler (req, res) {
 	try {
 
 		const apiResponse = await axios({
-			url: path,
-			baseURL: 'https://cpoa.api.barthofu.com',
+			url,
+			baseURL: apiURL,
 			method: req.method,
 			data: req.body,
 			params: req.query,
 			headers,
-			withCredentials: true
+			//withCredentials: true
 		})
 		
-		if (!isLogin) return res.json(apiResponse)
-
-		// login
-
-		const { token, refresh_token } = apiResponse.data
-
-		console.log(token)
-
-		res.setHeader(
-			'Set-Cookie',
-			cookie.serialize('token', token, {
-				// httpOnly: true,
-				secure: process.env.NODE_ENV !== 'development',
-				maxAge: 60 * 60,
-				sameSite: 'lax',
-				path: '/'
-			})
-		)
-		// cookies.set('token', 		 token, 		{ httpOnly: true, sameSite: 'lax', path: '/' })
-		// cookies.set('refresh_token', refresh_token, { httpOnly: true, sameSite: 'lax', path: '/' })
-
-		res.statusCode = 200
-		res.json({ loggedIn: true })
+		return res.json(JSON.stringify(apiResponse.data))
 
 	} catch (err) {
-		console.error(err)
-		return res.json(err)
+
+		//TODO: gérer le refresh du token
+
+		const status = err.toJSON()?.status
+
+		if (status === 401) {
+
+			res.redirect('/api/logout')
+			// // refresh le token
+			// const { refresh_token } = req.cookies
+
+			// if (refresh_token) {
+
+			// 	const { data } = await axios({
+			// 		url: '/api/token/refresh',
+			// 		baseURL: apiURL,
+			// 		method: 'POST',
+			// 		data: { refresh_token }
+			// 	})
+
+			// 	if (data?.token) {
+					
+			// 		// on ajoute le nouveau token au cookie
+			// 		const serializedCookie = cookie.serialize('token', data.token, cookieConfig)
+			// 		res.setHeader('Set-Cookie', serializedCookie)
+			// 		req.headers.cookie = serializedCookie
+
+			// 		// on retente la requête
+			// 		return handler(req, res)
+					
+			// 	} else {
+			// 		// on supprime le refresh_token
+			// 		res.redirect('/api/logout')
+			// 	}
+			//}
+		}
+
+		return res.json(err.toJSON())
 	}
 	
 }

@@ -10,13 +10,13 @@ export default function VipPage ({ vip }) {
     )
 }
 
-export async function getServerSideProps ({ params: { id } }) {
+export async function getServerSideProps ({ req, params: { id } }) {
 
-    const vip = await axios(`/api/vips/${id}`)
+    const res = await axios.get(`/proxy/vips/${id}`, { headers: { 'cookie': req.headers.cookie } }).catch(console.error)
 
     return {
         props: {
-            vip: vip.data
+            vip: res.data
         }
     }
 }

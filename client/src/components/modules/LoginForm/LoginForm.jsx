@@ -1,7 +1,7 @@
 import styles from './LoginForm.module.scss'
 import { useState } from 'react'
-import cookieCutter from 'cookie-cutter'
 import axios from '@utils/axios'
+import Router from 'next/router'
 
 export default function LoginForm () {
 
@@ -10,30 +10,23 @@ export default function LoginForm () {
     const logUser = (event) => {
         event.preventDefault()
 
-        axios
-            .post('/auth/login', {
-                    username: event.target.username.value, 
-                    password: event.target.password.value 
-                }
-            )
-            .then(async loginResponse => {
-                const { token, refresh_token } = loginResponse.data
+        const data = {
+            username: event.target.username.value,
+            password: event.target.password.value,
+        }
 
-                cookieCutter.set('token', token, { path: '/' })
-                cookieCutter.set('refresh_token', refresh_token, {path: '/' })
-
-                const meResponse = await axios({
-                    url: '/api/me',
-                    method: 'GET',
-                    headers: { 'Authorization': `Bearer ${token}` }
-                })
-
-                cookieCutter.set('profile', JSON.stringify(meResponse.data), { path: '/' })
-
-            })
-            .catch(err => {
-                setCredentialsError(true)
-            })
+        axios({
+            url: '/login',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            data: JSON.stringify(data)
+        })
+        .then(res => {
+            Router.push('/')
+        })
+        .catch(err => {
+            setCredentialsError(true)
+        })
     }
 
 
