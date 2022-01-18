@@ -1,0 +1,19 @@
+@use '_variables' as *;
+
+::-webkit-scrollbar {
+	display: none;
+	width: 5px;
+	height: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: $secondaryBackground;
+}
+
+  
+::-webkit-scrollbar-track {
+	background: rgba(0, 0, 0, 0);
+}
+  

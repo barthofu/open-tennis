@@ -1,7 +1,46 @@
+@use '_variables' as *;
+
 .container {
-    background: #1b1c30;
+
+    position: absolute;
+
+    width: 100vw - $sidebarWidth;
+    left: $sidebarWidth;
+    height: $navbarHeight;
+
+    padding: 0 2rem;
     display: flex;
-    width: 85%;
-    height: 100%;
-    // flex-direction: column;
+    z-index: -1;
+
+    background: $primaryBackground;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .modules {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.separator {
+
+    $separatorWidth: 79vw;
+
+    position: absolute;
+
+    top: $navbarHeight - 1vh;
+    left: (100vw - $separatorWidth + $sidebarWidth) / 2; 
+    width: $separatorWidth;
+    height: 3px;
+
+    z-index: 1;
+    
+    background: #23243d;
+    opacity: 0.8;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
 }

@@ -1,0 +1,31 @@
+@use '_variables' as *;
+
+.content {
+
+    position: absolute;
+
+    top: $navbarHeight;
+    left: $sidebarWidth;
+    width: 100vw - $sidebarWidth;
+
+    margin-top: 2vh;
+    height: 95vh - $navbarHeight;
+
+
+    display: flex;
+
+}
+
+.separator {
+
+
+    width: 3px;
+    height: 70vh;
+
+    z-index: 1;
+
+    background: #23243d;
+    opacity: 0.8;
+    padding: 0;
+    border-radius: 10px;
+}

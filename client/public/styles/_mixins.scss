@@ -1,0 +1,9 @@
+@use '_variables' as *;
+
+@mixin navbarModule() {
+
+    font-size: 1.3rem;
+    color: $secondaryText;
+    margin: 0 1.7rem;
+    cursor: pointer;
+}

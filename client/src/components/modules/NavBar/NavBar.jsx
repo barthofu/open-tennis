@@ -1,18 +1,23 @@
 import styles from "./NavBar.module.scss"
 import SearchBar from "@elements/SearchBar/SearchBar"
-import NavBarModules from "@elements/NavBarModules/NavBarModules"
-
+import DarkModeToggle from "@elements/DarkModeToggle/DarkModeToggle"
+import UserAvatar from "@elements/UserAvatar/UserAvatar"
+import PushNotification from "@elements/PushNotification/PushNotification"
 
 export default function NavBar() {
-    return (
-    <>
+    return (<>
     
     <div className={styles.container}>
         <SearchBar/>
-        <NavBarModules/>
+            
+        <div className={styles.modules}>
+            <PushNotification/>
+            <DarkModeToggle/>
+            <UserAvatar/>
+        </div>
     </div>
+    <span className={styles.separator}></span>
     
-    </>
-    )
+    </>)
 
 }

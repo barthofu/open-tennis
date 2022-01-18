@@ -28,8 +28,13 @@
     }
     
     label {
+
         cursor: pointer;
-        svg { fill: #757487; }
+
+        svg { 
+            width: 1vw;
+            fill: #757487; 
+        }
     }
     
 }

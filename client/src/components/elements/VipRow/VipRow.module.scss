@@ -1,0 +1,52 @@
+@use '_variables' as *;
+
+.container {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    height: 7vh;
+
+    background-color: $secondaryBackground;
+
+    color: $secondaryText;
+
+    transition: .2s linear;
+
+    &:hover {
+        height: 9vh;
+
+        .name {
+            color: rgba($primaryText, 1);
+
+        }
+    }
+
+    .name {
+
+        color: rgba($primaryText, 0.8);
+        font-weight: 700;
+    }
+
+    .type {
+
+        color: black;
+        font-weight: 800;
+        font-size: .8rem;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+
+        &.joueur {
+            background-color: #6AC47F;
+        }
+
+        &.accompagnant {
+            background-color: #FFCE00;
+        }
+    }
+}

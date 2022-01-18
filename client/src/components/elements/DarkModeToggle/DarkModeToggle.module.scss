@@ -1,9 +1,6 @@
-.container {
+@use '_mixins' as *;
 
-    width: 20%;
-    padding: 3vh 1vw 3vh 1vw;
-    display: flex;
-    justify-content: center;
+.icon {
 
-    svg { fill: #757487; }
+    @include navbarModule();
 }

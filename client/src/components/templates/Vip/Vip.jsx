@@ -1,8 +1,8 @@
-import styles from './Vip.module.scss'
+import styles from "./Vip.module.scss"
 
-export default function Vip () {
+export default function Vip ({ vip }) {
 
     return (<>
-        
+        { vip.prenom }
     </>)
-}
+} 
