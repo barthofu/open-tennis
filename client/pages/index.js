@@ -7,7 +7,7 @@ export default function HomePage () {
   return (
 
     <Default>
-      <Home/>  
+      {/* <Home/>   */}
     </Default>
 
 

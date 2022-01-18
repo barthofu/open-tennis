@@ -1,0 +1,35 @@
+.container {
+
+    display: flex;
+    padding: 1.5vw;
+    width: 70%;
+
+    input {
+
+        width: 100%;
+        border: none;
+        // border-radius: 5px;
+        background: #1b1c30;
+        color: #d9dae5;
+        font-family: "Tw Cen MTStd", sans-serif;
+        font-size: 0.8vw;
+        font-weight: 700;
+
+        &:focus {
+            outline: none;
+        }
+        
+        &::-webkit-input-placeholder {
+            color: #757487;
+            font-family: "Tw Cen MTStd", sans-serif;
+            font-size: 0.8vw;
+        }
+
+    }
+    
+    label {
+        cursor: pointer;
+        svg { fill: #757487; }
+    }
+    
+}
