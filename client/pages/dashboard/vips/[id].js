@@ -7,6 +7,13 @@ import axios from "@utils/axios"
 
 Modal.setAppElement('#__next')
 
+const customModalStyles = {
+
+    content: {
+
+    }
+}
+
 export default function VipPage ({ vip }) {
 
     const router = useRouter()
@@ -15,15 +22,20 @@ export default function VipPage ({ vip }) {
         router.prefetch('/dashboard/vips/')
     })
 
+    const onModalClose = () => router.push('/dashboard/vips', undefined, { shallow: true })
+
     return (<>
 
         <Modal
             isOpen={true}
-            onRequestClose={() => router.push('/dashboard/vips', undefined, { shallow: true })}
+            onRequestClose={onModalClose}
             contentLabel='Vip'
-            ariaHideApp={false}
+            ariaHideApp={true}
+            style={customModalStyles}
         >
-                <Vip vip={vip}></Vip>
+            <i className={`closeModalButton fas fa-times`} onClick={onModalClose}></i>
+            {/* <button className="modalButton" onClick={onModalClose}>X</button> */}
+            <Vip vip={vip}></Vip>
         </Modal>
 
     </>)

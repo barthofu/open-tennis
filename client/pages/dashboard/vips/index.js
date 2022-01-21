@@ -3,23 +3,11 @@ import Vips from '@templates/Vips/Vips'
 import Vip from '@templates/Vip/Vip'
 import VipStats from '@templates/VipStats/VipStats'
 
-import { useRouter } from 'next/router'
-import Modal from 'react-modal'
 import axios from '@utils/axios'
 
 export default function DashboardPage ({ vips }) {
-  const router = useRouter()
 
   return (<>
-
-    <Modal
-      isOpen={!!router.query.id}
-      onRequestClose={() => router.push('/dashboard/vips', undefined, { shallow: true })}
-      contentLabel='Vip'
-      ariaHideApp={false}
-    >
-      <Vip vip={vips.find(vip => vip.id === router.query.id)} pathname={router.pathname}></Vip>
-    </Modal>
 
     <Dashboard>
       <Vips vips={vips}></Vips>
@@ -35,7 +23,7 @@ export async function getServerSideProps ({ req }) {
 
   return {
       props: {
-          vips: res.data['hydra:member'].concat(res.data['hydra:member'])
+          vips: res.data['hydra:member']
       }
   }
 }

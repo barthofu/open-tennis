@@ -1,4 +1,5 @@
 @use '_variables' as *;
+@use 'sass:color' as color;
 
 .container {
 
@@ -19,11 +20,11 @@
     transition: .2s linear;
 
     &:hover {
-        height: 9vh;
+
+        background-color: color.adjust($secondaryBackground, $lightness: 5%);
 
         .name {
             color: rgba($primaryText, 1);
-
         }
     }
 
