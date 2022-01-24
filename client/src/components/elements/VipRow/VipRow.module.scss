@@ -17,6 +17,8 @@
 
     color: $secondaryText;
 
+    opacity: 0;
+    animation: slideIn 0.9s ease-in-out forwards 0.2s;
     transition: .2s linear;
 
     &:hover {
@@ -49,5 +51,19 @@
         &.accompagnant {
             background-color: #FFCE00;
         }
+    }
+}
+
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
     }
 }

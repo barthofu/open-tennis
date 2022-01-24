@@ -15,7 +15,7 @@ export default function Vips ({ vips }) {
             .filter(vip => `${vip.prenom} ${vip.nom}`.toLowerCase().includes(sharedState.search.value.toLowerCase()))
             .map((vip, i) => 
 
-                <VipRow key={vip.id} vip={vip}/>
+                <VipRow index={i} key={vip.id} vip={vip}/>
 
             ) 
         }
