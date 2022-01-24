@@ -31,17 +31,20 @@ export default function LoginForm () {
 
 
     return (
-        <form onSubmit={logUser}>
-            
-            { credentialsError && <span className='error'>Identifiants invalides</span> }
+        <div className={styles.formContainer}>
+            <h1>OPEN TENNIS ADMIN PANNEL</h1>
+            <form onSubmit={logUser}>
+                
+                { credentialsError && <span className='error'>Identifiants invalides</span> }
 
-            <label htmlFor='username'></label>
-            <input type="text" placeholder="Nom d'utilisateur" name="username" id="username" required />
+                <label htmlFor='username'></label>
+                <input type="text" placeholder="Nom d'utilisateur" name="username" id="username" required />
 
-            <label htmlFor='password'></label>
-            <input type="password" placeholder="Mot de passe" name="password" id="password" required />
+                <label htmlFor='password'></label>
+                <input type="password" placeholder="Mot de passe" name="password" id="password" required />
 
-            <button type="submit">Se connecter</button>
-        </form>
+                <button type="submit">Se connecter</button>
+            </form>
+        </div>
     )
 }
