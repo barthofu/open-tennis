@@ -31,7 +31,7 @@ export default function LoginForm () {
 
     return (
         <div className={styles.formContainer}>
-            <h1>OPEN TENNIS ADMIN PANNEL</h1>
+            <img className={styles.logo} alt="Open Tennis" src="https://cdn.discordapp.com/attachments/755176230264766616/929042998698844220/logo_ot.png" />
             <form onSubmit={logUser}>
                 
                 { credentialsError && <span className='error'>Identifiants invalides</span> }

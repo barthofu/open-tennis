@@ -24,12 +24,12 @@ export default function Vip ({ vip, responsableId }) {
                     <div className={styles.nationalite}>{vip.nationalite}</div>
 
                     { vip['@type'] === 'Joueur' && <>
-                        <div className={styles.classementATP}>Classement ATP : {vip.classementATP}</div>
+                        <div className={styles.classementATP}>#{vip.classementATP}</div>
                         <div className={styles.accompagnants}>
                             Accompagnants : 
                             {vip.accompagnants.map(accompagnant => 
                                 <Link key={accompagnant.id} href={`/dashboard/vips/${accompagnant.id}`}>
-                                    <a>{accompagnant.prenom.slice(0, 1)} {accompagnant.nom}</a>
+                                    <a className={styles.accompagnant}>{accompagnant.prenom.slice(0, 1)}. {accompagnant.nom}</a>
                                 </Link>
                             )}
                         </div>
@@ -38,7 +38,7 @@ export default function Vip ({ vip, responsableId }) {
                         <div className={styles.accompagne}>
                             Accompagne : 
                             <Link href={`/dashboard/vips/${vip.accompagne.id}`}>
-                                <a>{vip.accompagne.nom.slice(0, 1)} {vip.accompagne.prenom}</a>
+                                <a>{vip.accompagne.nom.slice(0, 1)}. {vip.accompagne.prenom}</a>
                             </Link>
                         </div>
                     }

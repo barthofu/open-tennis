@@ -70,18 +70,19 @@ export default function SuivisForm({ vip, responsableId }) {
                     <Form onSubmit={handleSubmit}>
 
                         <div className={styles.formField}>
+                            {errors.title && touched.title && <span className={styles.error}>{errors.title}</span>}
                             <label htmlFor="title"></label>
                             <Field type="text" name="title" id="title" placeholder="Titre"/>
-                            {errors.title && touched.title && <span className={styles.error}>{errors.title}</span>}
                         </div>
 
                         <div className={styles.formField}>
+                            {errors.description && touched.description && <span className={styles.error}>{errors.description}</span>}
                             <label htmlFor="description"></label>
                             <Field type="text" name="description" id="description" placeholder="Description"/>
-                            {errors.description && touched.description && <span className={styles.error}>{errors.description}</span>}
                         </div>
 
                         <div className={styles.formField}>
+                            {errors.type && touched.type && <div className={styles.error}>{errors.type}</div>}
                             <div role="group" aria-labelledby="type">
                                 <label>
                                     <Field type="radio" name="type" value="echange" />
@@ -92,12 +93,12 @@ export default function SuivisForm({ vip, responsableId }) {
                                     <span>Action</span>
                                 </label>
                             </div>
-                            {errors.type && touched.type && <span className={styles.error}>{errors.type}</span>}
                         </div>
 
                         {
                             values.type === "echange" && <>
                                 <div className={styles.formField}>
+                                    {errors.sources && touched.sources && <span className={styles.error}>{errors.sources}</span>}
                                     <label htmlFor='sources'></label>
                                     <select onChange={handleChange} onBlur={handleBlur} placeholder="Source" name="sources" id="sources">
                                         <option value="">-- Source --</option>
@@ -106,19 +107,18 @@ export default function SuivisForm({ vip, responsableId }) {
                                         <option value="irl">IRL</option>
                                         <option value="fax">FAX</option>
                                     </select>
-                                    {errors.sources && touched.sources && <span className={styles.error}>{errors.sources}</span>}
                                 </div>
                             </>
                         }
                         {
                             values.type === "action" && <>
                                 <div className={styles.formField}>
+                                    {errors.statut && touched.statut && <span className={styles.error}>{errors.statut}</span>}
                                     <label htmlFor='statut'></label>
                                     <select onChange={handleChange} onBlur={handleBlur} placeholder="Statut" name="statut" id="statut">
                                         <option value="opened">Opened</option>
                                         <option value="closed">Closed</option>
                                     </select>
-                                    {errors.statut && touched.statut && <span className={styles.error}>{errors.statut}</span>}
                                 </div>
                             </>
                         }

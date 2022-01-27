@@ -1,3 +1,5 @@
+@use '_variables' as *;
+
 .container {
 
 
@@ -6,26 +8,55 @@
 
     color: white;
     flex-direction: column;
-    width: 30%;
     user-select: none;
 
-    h1 {
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        margin-bottom: 1rem;
-        color: white;
-        font-size: 1rem;
-        font-family: Roboto, sans-serif;
-    }
-
     form {
-        padding: 2.5rem;
+
+        padding: 1.5rem;
         border-radius: 10px;
         background: #29274b;
 
-        button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        div[role="group"] {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 100%;
+
+            label {
+                margin: 0 .5rem;
+            }
+            
+            input[type="radio"] {
+                display: none;
+
+                & + span { 
+                    cursor: pointer;
+                    color: gray; 
+                }
+
+                &:checked + span{
+                    color: white;
+                }
+            }
+        }
+
+        .error {
+            color: rgb(255, 85, 85);
+            font-size: .8rem;
+            transform: translateY(-1rem);
+        }
+
+
+        button {
+
+            margin-top: 1rem;
+            border: none;
+            // box-shadow: 0 0 5px 5px rgba(black, .1);
             cursor: pointer;
             background-color: #b383f6;
             color: white;
@@ -33,9 +64,9 @@
         }
     
         label, input{
+
             display: flex;
             margin-bottom: 5px;
-            width: 100%;
         }
     
         label {
@@ -43,9 +74,11 @@
         }
     
         input {
+
             margin-top: 0.5rem;
             margin-bottom: 1.5rem;
             outline: none;
+            border: none;
         }
     
         input, button {

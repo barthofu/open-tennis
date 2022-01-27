@@ -44,6 +44,80 @@
 
             &.description {
                 width: 30%;
+
+                &:before {
+
+                    content: '“';
+                    z-index: -1;
+
+                    top: 8%;
+                    transform: translateX(-1rem);
+                    position: absolute;
+                    font-size: 10rem;
+
+                    color: $primaryBackground;
+
+                    font-family: 'Arimo', Times, serif;
+                    font-weight: bolder;
+                }
+
+                &:after {
+
+                    content: '”';
+                    z-index: -1;
+
+                    top: 22%;
+                    transform: translateX(600%);
+                    position: absolute;
+                    font-size: 10rem;
+
+                    color: $primaryBackground;
+
+                    font-family: 'Arimo', Times, serif;
+                    font-weight: bolder;
+                }
+            }
+
+            &.utils {
+
+                div, h1 {
+                    z-index: 1;
+                }
+
+                .name {
+                    
+                }
+
+                .classementATP {
+
+                    z-index: 0;
+
+                    position: absolute;
+                    transform: translateY(-4rem);
+                    color: $primaryBackground;
+                    font-size: 5rem;
+                    font-family: "Poppins";
+                    font-weight: bolder;
+                }
+
+                .accompagnants {
+
+                    .accompagnant {
+
+                        margin: .2rem;
+                        padding: .2rem .5rem;
+                        border-radius: .3rem;
+                        background: $primaryBackground;
+
+                        transition: .2s linear;
+
+                        &:hover {
+
+                            background: $primaryText;
+                            color: $primaryBackground;
+                        }
+                    }
+                }
             }
         }
 
@@ -67,13 +141,18 @@
     .suivisContainer {
 
         display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        margin-left: -2rem;
 
         .separator {
+
             width: 3px;
             height: 15vh;
             background: $primaryBackground;
             border-radius: 10px;
-            margin: 0 2rem;
+            margin-right: 3.5rem;
         }
     }
 
