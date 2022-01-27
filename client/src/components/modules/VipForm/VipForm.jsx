@@ -50,7 +50,6 @@ export default function VipForm({ joueurs }) {
             data: JSON.stringify(values)
         })
         .then(res => {
-            console.log(res)
             Router.push('/dashboard/vips')
         })
         .catch(err => {

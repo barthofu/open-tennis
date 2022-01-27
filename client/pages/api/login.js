@@ -13,7 +13,7 @@ export default async function handler (req, res) {
 
     const { username, password } = req.body
 
-    await axios({
+    axios({
         url: '/auth/login',
         baseURL: apiURL,
         method: 'POST',
@@ -26,13 +26,33 @@ export default async function handler (req, res) {
 
         const { token, refresh_token } = apiResponse.data
 
-        res.setHeader('Set-Cookie', [
-            cookie.serialize('token', token, cookieConfig),
-            cookie.serialize('refresh_token', refresh_token, cookieConfig)
-        ])
-    
-        res.status(200)
-        res.json({ isLogged: true })
+        axios({
+            url: '/api/me',
+            baseURL: apiURL,
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(apiResponse => {
+
+            res.setHeader('Set-Cookie', [
+                cookie.serialize('token', token, cookieConfig),
+                cookie.serialize('refresh_token', refresh_token, cookieConfig),
+                cookie.serialize('responsable_id', apiResponse.data['@id'], cookieConfig)
+            ])
+        })
+        .catch(err => {
+            res.setHeader('Set-Cookie', [
+                cookie.serialize('token', token, cookieConfig),
+                cookie.serialize('refresh_token', refresh_token, cookieConfig)
+            ])
+        })
+        .finally(() => {
+
+            res.status(200)
+            res.json({ isLogged: true })
+        })
     })
     .catch(e => {
 

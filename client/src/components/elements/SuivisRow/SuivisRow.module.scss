@@ -1,0 +1,88 @@
+@use '_variables' as *;
+@use 'sass:color' as color;
+
+.container {
+
+    cursor: pointer;
+
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    // height: 5vh;
+
+    background-color: color.adjust($secondaryBackground, $lightness: 5%);;
+
+    color: $secondaryText;
+
+    opacity: 0;
+    animation: slideIn 0.9s ease-in-out forwards 0.2s;
+    transition: .2s linear;
+
+    &:hover {
+
+        background-color: color.adjust($secondaryBackground, $lightness: 10%);
+
+        .name {
+            color: rgba($primaryText, 1);
+        }
+    }
+
+}
+
+.container summary {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & > div {
+        display: flex;
+        justify-content: center;
+        width: 30%;
+    }
+
+
+    .name {
+
+        color: rgba($primaryText, 0.8);
+        font-weight: 700;
+    }
+
+    .typeContainer {
+
+        justify-content: flex-end;
+
+        .type {
+    
+            color: black;
+            font-weight: 800;
+            font-size: .8rem;
+            padding: 0.2rem 1rem;
+            border-radius: 10px;
+    
+            &.echange {
+                background-color: #6AC47F;
+            }
+    
+            &.action {
+                background-color: #FFCE00;
+            }
+        }
+    }
+}
+
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

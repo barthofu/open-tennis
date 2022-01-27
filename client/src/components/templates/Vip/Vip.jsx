@@ -1,64 +1,74 @@
+import SuivisRow from "@elements/SuivisRow/SuivisRow"
+import List from "@modules/List/List"
+import SuivisForm from "@modules/SuivisForm/SuivisForm"
+import Link from "next/link"
+import { useEffect } from "react"
 import styles from "./Vip.module.scss"
 
-export default function Vip ({ vip }) {
-
+export default function Vip ({ vip, responsableId }) {
+    
     return (<>
         <div className={styles.container}>
-            <div className={styles.topRow}>
-                
-                <div className={styles.leftColumn}>
+        
+            <div className={styles.header}>  </div>
+        
+            <div className={styles.infos}>
 
-                    <div className={styles.data}>
-                        <div className={styles.title}>Nom</div>
-                        <span>{vip.nom}</span>
-                    </div>
-                    
-                    <div className={styles.data}>
-                    <div className={styles.title}>Prénom</div>
-                        <span>{vip.prenom}</span>
-                    </div>
+                <section className={styles.photo}>
+                    <img src={vip.photo || "https://www.batitoiture.lu/wp-content/uploads/2017/12/profile.png"} alt={vip.nom} />
+                </section>
 
-                </div>
-                
-                <div className={styles.middleColumn}>
-                    <div className={styles.picture}>
-                        <img src={vip.photo} alt={vip.nom} />
-                    </div>
-                </div>
-                
-                <div className={styles.rightColumn}>
-                    <div className={styles.data}>
-                        <div className={styles.title}>Âge</div>
-                        <span>{vip.age}</span>
-                    </div>
-                    
-                    <div className={styles.data}>
-                        <div className={styles.title}>Nationalité</div>
-                        <span>Pastaga{vip.flag}{vip.nationality}</span>
-                    </div>
-                
-                </div>
-            </div>  
-            
-            <div className={styles.midRow}>
-                <div className={styles.data}>
-                    <div className={styles.title}>Description</div>
-                    <div className={styles.description}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    </div>
-                </div>
-                
+                <section className={styles.utils}>
+                    <h1 className={styles.name}>{vip.prenom} {vip.nom.toUpperCase()}</h1>
+                    <div className={styles.age}>{vip.age} ans</div>
+                    <div className={styles.nationalite}>{vip.nationalite}</div>
 
-                
+                    { vip['@type'] === 'Joueur' && <>
+                        <div className={styles.classementATP}>Classement ATP : {vip.classementATP}</div>
+                        <div className={styles.accompagnants}>
+                            Accompagnants : 
+                            {vip.accompagnants.map(accompagnant => 
+                                <Link key={accompagnant.id} href={`/dashboard/vips/${accompagnant.id}`}>
+                                    <a>{accompagnant.prenom.slice(0, 1)} {accompagnant.nom}</a>
+                                </Link>
+                            )}
+                        </div>
+                    </> }
+                    { vip['@type'] === 'Accompagnant' && 
+                        <div className={styles.accompagne}>
+                            Accompagne : 
+                            <Link href={`/dashboard/vips/${vip.accompagne.id}`}>
+                                <a>{vip.accompagne.nom.slice(0, 1)} {vip.accompagne.prenom}</a>
+                            </Link>
+                        </div>
+                    }
+                </section>
+
+                <span className={styles.separator}></span>
+
+                <section className={styles.description}>
+                    {vip.description}
+                </section>
 
             </div>
 
-            <div className={styles.bottomRow}>
-                <div className={styles.leftColumn}></div>
-                <div className={styles.right}></div>
+            <span className={styles.separator}></span>
+
+            <div className={styles.suivisContainer}>
+                  <List sections={[ 'Titre', 'Date', 'Type' ]}>
+                      {vip.suivis
+                        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                        .map((suivi, i) => 
+                            <SuivisRow index={i} key={suivi.id} suivi={suivi}/>
+                        )
+                      }
+                  </List>  
+                  <span className={styles.separator}></span>
+                  <SuivisForm vip={vip} responsableId={responsableId}/>
             </div>
-            
+
         </div>
+        
         
     </>
     )
