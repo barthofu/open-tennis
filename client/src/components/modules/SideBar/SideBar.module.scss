@@ -27,14 +27,14 @@
 
     h1 {
         color: $primaryText;
-        font-family: "Tw Cen MTStd", sans-serif;
+        font-family: $fontFamily;
         font-size: 0.65vw;
         padding: 1rem;
     }
 
     a {
         color: $secondaryText;
-        font-family: "Tw Cen MTStd", sans-serif;
+        font-family: $fontFamily;
         padding: 1rem;
         font-weight: 700;
         font-size: 0.8vw;
