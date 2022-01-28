@@ -163,7 +163,7 @@ export default function VipForm({ joueurs, categoriesAccompagnant, edit, data })
                                 <div className={styles.formField}>
                                     {errors.classementATP && touched.classementATP && <span className={styles.error}>{errors.classementATP}</span>}
                                     <label htmlFor="classementATP"></label>
-                                    <Field type="number" name="classementATP" id="classementATP" placeholder="Classement ATP" value={ edit ? values.classementATP : ''}/>
+                                    <Field type="number" name="classementATP" id="classementATP" placeholder="Classement ATP" value={values.classementATP}/>
                                 </div>
                             </>
                         }
