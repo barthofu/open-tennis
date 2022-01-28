@@ -14,7 +14,7 @@ export default function SideBar() {
             <img className={styles.logo} alt="Open Tennis" src="https://cdn.discordapp.com/attachments/755176230264766616/929042998698844220/logo_ot.png" />
             <div className={styles.menu}>
                 <SideBarTab label="Dashboard" link="/" icon="fas fa-tachometer-alt"/>
-                <SideBarTab label="Liste VIP" link="/dashboard/vips" icon="far fa-user"/>
+                <SideBarTab label="VIPs" link="/dashboard/vips" icon="far fa-user"/>
                 <SideBarTab label="Suivis" link="/dashboard/suivis" icon="far fa-newspaper"/>
             </div>
         </div>
