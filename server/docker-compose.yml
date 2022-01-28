@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+
+  database:
+    image: mysql
+    container_name: db_open-tennis
+    restart: always
+    volumes:
+      - ./data:/var/lib/mysql:rw
+    env_file:
+      - .env
+    networks:
+      - dev
+
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin_open-tennis
+    restart: always
+    depends_on:
+        - database
+    ports:
+        - 8080:80
+    environment:
+        PMA_HOST: database
+    networks:
+        - dev
+
+  www:
+    build:
+      context: ./
+      dockerfile: ./.docker/php/Dockerfile
+    container_name: www_open-tennis
+    ports:
+      - "8741:8000"
+    volumes:
+        - ./:/var/www:cached
+        - ./.docker/php/vhosts:/etc/apache2/sites-enabled
+    restart: always
+    networks:
+        - dev
+
+networks:
+  dev:
