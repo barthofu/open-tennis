@@ -11,7 +11,7 @@
     align-items: center;
 
     .user {
-        color: $secondaryText;
+        color: var(--secondary-text);
         font-family: $fontFamily;
         font-weight: 900;
     }

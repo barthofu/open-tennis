@@ -1,12 +1,12 @@
 @use '_variables' as *;
 
 .ReactModal__Overlay {
-    background-color: $primaryBackground !important;
+    background-color: var(--primary-background) !important;
 }
 
 .ReactModal__Content {
     
-    background-color: $secondaryBackground !important;
+    background-color: var(--secondary-background) !important;
 
     top: 50% !important;
     left: 50% !important;

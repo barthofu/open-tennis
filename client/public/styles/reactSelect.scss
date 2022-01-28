@@ -8,7 +8,7 @@ $borderRadius: 10px;
 
     .react-select__control {
 
-        background-color: $secondaryBackground;
+        background-color: var(--secondary-background);
         border: none;
         border-radius: $borderRadius;
 
@@ -16,11 +16,11 @@ $borderRadius: 10px;
 
             border-radius: $borderRadius;
 
-            background-color: $secondaryBackground;
+            background-color: var(--secondary-background);
 
             .react-select__placeholder {
-                color: $primaryText;
-                background-color: $secondaryBackground;
+                color: var(--primary-text);
+                background-color: var(--secondary-background);
 
             }
 
@@ -28,24 +28,24 @@ $borderRadius: 10px;
                 
                 border-radius: 5px;
 
-                color: $primaryText;
-                background-color: $secondaryBackground;
+                color: var(--primary-text);
+                background-color: var(--secondary-background);
             }
         }
     }
 
     .react-select__menu {
 
-        background-color: $secondaryBackground;
+        background-color: var(--secondary-background);
 
         .react-select__menu-list {
                 
                 .react-select__option {
-                    color: $primaryText;
+                    color: var(--primary-text);
 
                     &:hover {
 
-                        background-color: $primaryBackground;
+                        background-color: var(--primary-background);
                     }
                 }
         }
@@ -53,5 +53,5 @@ $borderRadius: 10px;
 }
 
 .react-select__single-value {
-    color: $primaryText !important;
+    color: var(--primary-text) !important;
 }

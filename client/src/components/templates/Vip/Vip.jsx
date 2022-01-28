@@ -3,13 +3,39 @@ import List from "@modules/List/List"
 import SuivisForm from "@modules/SuivisForm/SuivisForm"
 import Link from "next/link"
 import styles from "./Vip.module.scss"
+import axios from '@utils/axios'
 
 export default function Vip ({ vip, responsableId }) {
+
+    const deleteVip = (event) => {
+
+        if (window.confirm('Voulez-vous vraiment supprimer ce VIP ?')) {
+            axios({
+                url: `/proxy/vips/${vip.id}`,
+                method: 'DELETE',
+            })
+            .then(res => {
+                Router.push(`/dashboard/vips/`)
+            })
+            .catch(err => {
+                console.error(err)
+            })
+        }
+    }
 
     return (<>
         <div className={styles.container}>
         
-            <div className={styles.header}>  </div>
+            <div className={styles.header}> 
+
+            <Link href={`/dashboard/vips/edit/${vip.id}`}>
+                <a className={styles.edit}><i className="fas fa-pen"></i></a>
+            </Link>
+            
+            <a onClick={deleteVip} className={styles.delete}><i className="fas fa-trash"></i></a>
+
+            
+            </div>
         
             <div className={styles.infos}>
 

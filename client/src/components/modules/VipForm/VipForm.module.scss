@@ -8,7 +8,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: var(--primary-text);
     flex-direction: column;
     width: 30%;
     user-select: none;
@@ -18,7 +18,6 @@
         align-items: center;
         text-align: center;
         margin-bottom: 1rem;
-        color: white;
         font-family: Roboto, sans-serif;
     }
 
@@ -32,7 +31,7 @@
 
         padding: 2.5rem;
         border-radius: 10px;
-        background: #29274b;
+        background: var(--secondary-background);
 
         .main {
 
@@ -91,8 +90,8 @@
             /* Personalize */
             flex: 1;
             padding: 0 1em;
-            color: #fff;
-            background-color: $secondaryBackground;
+            color: var(--primary-text);
+            background-color: var(--primary-background);
             background-image: none;
             cursor: pointer;
         }
@@ -119,7 +118,7 @@
             top: 0;
             right: 0;
             padding: 1em;
-            background-color: $secondaryBackground;
+            background-color: var(--primary-background);
             transition: .25s all ease;
             pointer-events: none;
         }

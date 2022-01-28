@@ -11,7 +11,8 @@
             "@contexts/*": ["context/*"],
             "@hooks/*": ["hooks/*"],
             "@utils/*": ["utils/*"],
-            "@styles/*": ["../public/styles/*"]
+            "@styles/*": ["../public/styles/*"],
+            "@assets/*": ["../public/assets/*"]
         }
     },
     "exclude": ["node_modules"]

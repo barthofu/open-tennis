@@ -11,7 +11,7 @@ body {
 
 body {
 
-	background: $primaryBackground;
+	background: var(--primary-background);
 }
 
 a {

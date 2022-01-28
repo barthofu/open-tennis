@@ -12,7 +12,7 @@
     display: flex;
     z-index: -1;
 
-    background: $primaryBackground;
+    background: var(--primary-background);
 
     display: flex;
     align-items: center;
@@ -22,6 +22,17 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        .add {
+            cursor: pointer;
+            color: var(--primary-text);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+
+            padding: .5rem .8rem;
+            border-radius: 10px;
+            background-color: var(--secondary-background-lighten-5);
+        }
     }
 }
 
@@ -32,13 +43,13 @@
     position: absolute;
 
     top: $navbarHeight - 1vh;
-    left: (100vw - $separatorWidth + $sidebarWidth) / 2; 
+    left: calc((100vw - $separatorWidth + $sidebarWidth) / 2); 
     width: $separatorWidth;
     height: 3px;
 
     z-index: 1;
     
-    background: #23243d;
+    background: var(--secondary-background);
     opacity: 0.8;
     margin: 0;
     padding: 0;

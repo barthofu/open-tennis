@@ -1,15 +1,15 @@
 import styles from './DarkModeToggle.module.scss'
 
-import { useState } from 'react'
+import { useTheme } from 'next-themes'
 
 export default function DarkModeToggle() {
 
-    const [isDarkMode, setIsDarkMode] = useState(false)
+    const {theme, setTheme} = useTheme()
 
     return(
     <>
         <div className={styles.container}>
-            <i className={`${styles.icon} ${isDarkMode ? 'far' : 'fas'} fa-moon`} onClick={() => setIsDarkMode(!isDarkMode)}></i>
+            <i className={`${styles.icon} ${theme === 'light' ? 'far' : 'fas'} fa-moon`} onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}></i>
         </div>
     </>
     )

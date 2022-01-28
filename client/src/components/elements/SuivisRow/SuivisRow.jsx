@@ -14,7 +14,6 @@ export default function SuivisRow ({ suivi }) {
                 method: 'DELETE',
             })
             .then(res => {
-                console.log(suivi.vip)
                 Router.push(`/dashboard/vips/${suivi.vip.split('/').slice(-1)[0]}`)
             })
             .catch(err => {

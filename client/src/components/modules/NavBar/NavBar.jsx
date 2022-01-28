@@ -4,6 +4,7 @@ import DarkModeToggle from "@elements/DarkModeToggle/DarkModeToggle"
 import UserAvatar from "@elements/UserAvatar/UserAvatar"
 import PushNotification from "@elements/PushNotification/PushNotification"
 import Logout from "@elements/Logout/Logout"
+import Link from "next/link"
 
 export default function NavBar() {
     return (<>
@@ -12,7 +13,9 @@ export default function NavBar() {
         <SearchBar/>
             
         <div className={styles.modules}>
-            <PushNotification/>
+            <Link href="/dashboard/vips/add">
+                <a><i className={`${styles.add} fas fa-plus`}></i></a>
+            </Link>
             <DarkModeToggle/>
             <UserAvatar/>
             <Logout/>

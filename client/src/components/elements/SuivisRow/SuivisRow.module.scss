@@ -15,9 +15,9 @@
 
     // height: 5vh;
 
-    background-color: color.adjust($secondaryBackground, $lightness: 5%);;
+    background-color: var(--secondary-background-lighten-5);
 
-    color: $secondaryText;
+    color: var(--secondary-text);
 
     opacity: 0;
     animation: slideIn 0.9s ease-in-out forwards 0.2s;
@@ -25,10 +25,10 @@
 
     &:hover {
 
-        background-color: color.adjust($secondaryBackground, $lightness: 10%);
+        background-color: var(--secondary-background-lighten-10);
 
         .name {
-            color: rgba($primaryText, 1);
+            color: rgba(var(--primary-text), 1);
         }
     }
 
@@ -43,8 +43,8 @@
         .delete {
             
             border-radius: 0.5rem;
-            background-color: $secondaryBackground;
-            color: white;
+            background-color: var(--secondary-background);
+            color: var(--primary-text);
             font-size: 0.9rem;
             cursor: pointer;
             transition: .2s linear;
@@ -52,8 +52,8 @@
             font-family: $fontFamily;
 
             &:hover {
-                background-color: $primaryBackground;
-                color: $primaryText;
+                background-color: var(--primary-background);
+                color: var(--primary-text);
             }
         }
     }
@@ -77,7 +77,7 @@
     .name {
 
         justify-content: flex-start;
-        color: rgba($primaryText, 0.8);
+        color: rgba(var(--primary-text), 0.8);
         font-weight: 700;
     }
 
@@ -94,11 +94,11 @@
             border-radius: 10px;
     
             &.echange {
-                background-color: #6AC47F;
+                background-color: #8dc99b;
             }
     
             &.action {
-                background-color: #FFCE00;
+                background-color: #e7d074;
             }
         }
     }

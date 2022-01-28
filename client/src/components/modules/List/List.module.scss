@@ -21,7 +21,7 @@
 
     height: 3vh;
 
-    color: $secondaryText;
+    color: var(--secondary-text);
 }
 
 .separator {
@@ -32,7 +32,7 @@
 
     z-index: 1;
 
-    background: $secondaryBackground;
+    background: var(--secondary-background);
     opacity: 0.8;
     padding: 0;
     border-radius: 10px;

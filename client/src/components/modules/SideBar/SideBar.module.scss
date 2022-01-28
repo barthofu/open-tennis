@@ -12,7 +12,7 @@
     justify-content: space-between;
 
     padding: 3vh 0 5vh 1vw;
-    background: $secondaryBackground;
+    background: var(--secondary-background);
 
     .logo {
         width: 80%;
@@ -26,14 +26,14 @@
     }
 
     h1 {
-        color: $primaryText;
+        color: var(--primary-text);
         font-family: $fontFamily;
         font-size: 0.65vw;
         padding: 1rem;
     }
 
     a {
-        color: $secondaryText;
+        color: var(--secondary-text);
         font-family: $fontFamily;
         padding: 1rem;
         font-weight: 700;
@@ -42,7 +42,7 @@
         transition: .1s linear;
 
         &:hover {
-            color: $primaryText;
+            color: var(--primary-text);
         }
     }
 

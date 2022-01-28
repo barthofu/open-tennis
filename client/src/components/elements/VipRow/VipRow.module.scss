@@ -13,9 +13,9 @@
 
     height: 7vh;
 
-    background-color: $secondaryBackground;
+    background-color: var(--secondary-background);
 
-    color: $secondaryText;
+    color: var(--secondary-text);
 
     opacity: 0;
     animation: slideIn 0.9s ease-in-out forwards 0.2s;
@@ -23,16 +23,16 @@
 
     &:hover {
 
-        background-color: color.adjust($secondaryBackground, $lightness: 5%);
+        background-color: var(--secondary-background-lighten-5);
 
         .name {
-            color: rgba($primaryText, 1);
+            color: rgba(var(--primary-text), 1);
         }
     }
 
     .name {
 
-        color: rgba($primaryText, 0.8);
+        color: rgba(var(--primary-text), 0.8);
         font-weight: 700;
     }
 
@@ -45,11 +45,11 @@
         border-radius: 10px;
 
         &.joueur {
-            background-color: #6AC47F;
+            background-color: #8dc99b;
         }
 
         &.accompagnant {
-            background-color: #FFCE00;
+            background-color: #e7d074;
         }
     }
 }

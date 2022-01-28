@@ -1,0 +1,23 @@
+@use 'sass:color' as color;
+
+[data-theme="dark"] {
+
+    --primary-background: #1b1c30;
+    --secondary-background: #23243d;
+    --secondary-background-lighten-5: #{color.adjust(#23243d, $lightness: 5%)};
+    --secondary-background-lighten-10: #{color.adjust(#23243d, $lightness: 10%)};
+
+    --primary-text: #d9dae5;
+    --secondary-text: #757487;
+}
+
+[data-theme="light"] {
+
+    --primary-background: #E8EAE6;
+    --secondary-background: #cecbd0;
+    --secondary-background-lighten-5: #{color.adjust(#cecbd0, $lightness: 5%)};
+    --secondary-background-lighten-10: #{color.adjust(#cecbd0, $lightness: 10%)};
+    
+    --primary-text: #1b1c30;
+    --secondary-text: #757487;
+}

@@ -45,7 +45,7 @@ export async function getServerSideProps ({ req, params: { id } }) {
         else res.data.accompagne = null
 
         //fetch categorie
-        const resCategorie = await axios.get(`/proxy/categorie_accompagnants/${res.data.categorie.split('/').slice(-1)}`, { headers: { 'cookie': req.headers.cookie } }).catch(e => console.log('erreur'))
+        const resCategorie = await axios.get(`/proxy/categorie_accompagnants/${res.data.categorie?.split('/').slice(-1)}`, { headers: { 'cookie': req.headers.cookie } }).catch(e => console.log('erreur'))
         if (resCategorie?.data['id']) res.data.categorie = resCategorie.data.label
     }
     else if (res.data['@type'] === 'Joueur') {

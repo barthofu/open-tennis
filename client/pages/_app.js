@@ -2,6 +2,7 @@ import '@styles/main.scss'
 import '@styles/scrollbar.scss'
 import '@styles/modal.scss'
 import '@styles/reactSelect.scss'
+import '@styles/themes.scss'
 import '@styles/_fonts.scss'
 import { ThemeProvider } from 'next-themes'
 
