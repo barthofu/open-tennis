@@ -30,6 +30,26 @@ const countries = [
         code: 'RU',
         name: 'Russie',
         flag: ''
+    },
+    {
+        code: 'SW',
+        name: 'Suisse',
+        flag: ''
+    },
+    {
+        code: 'ES',
+        name: 'Espagne',
+        flag: ''
+    },
+    {
+        code: 'US',
+        name: 'États-Unis',
+        flag: ''
+    },
+    {
+        code: 'IT',
+        name: 'Italie',
+        flag: ''
     }
     
 ]
