@@ -1,0 +1,57 @@
+@use '_variables' as *;
+
+$borderRadius: 10px;
+
+.react-select-container {
+
+    border-radius: 5px;
+
+    .react-select__control {
+
+        background-color: $secondaryBackground;
+        border: none;
+        border-radius: $borderRadius;
+
+        .react-select__value-container {
+
+            border-radius: $borderRadius;
+
+            background-color: $secondaryBackground;
+
+            .react-select__placeholder {
+                color: $primaryText;
+                background-color: $secondaryBackground;
+
+            }
+
+            .react-select__value {
+                
+                border-radius: 5px;
+
+                color: $primaryText;
+                background-color: $secondaryBackground;
+            }
+        }
+    }
+
+    .react-select__menu {
+
+        background-color: $secondaryBackground;
+
+        .react-select__menu-list {
+                
+                .react-select__option {
+                    color: $primaryText;
+
+                    &:hover {
+
+                        background-color: $primaryBackground;
+                    }
+                }
+        }
+    }
+}
+
+.react-select__single-value {
+    color: $primaryText !important;
+}

@@ -1,35 +1,11 @@
-import Vip from '@templates/Vip/Vip'
+import Default from '@layouts/Dashboard/Dashboard'
+import VipEdit from '@templates/VipEdit/VipEdit'
+import axios from '@utils/axios'
 
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import Modal from 'react-modal'
-import axios from "@utils/axios"
-
-Modal.setAppElement('#__next')
-
-export default function VipPage ({ vip, responsableId }) {
-
-    const router = useRouter()
-
-    useEffect(() => {
-        router.prefetch('/dashboard/vips/')
-    })
-
-    const onModalClose = () => router.push('/dashboard/vips', undefined, { shallow: true })
+export default function VipEditPage ({ vip, categoriesAccompagnant, joueurs }) {
 
     return (<>
-
-        <Modal
-            isOpen={true}
-            onRequestClose={onModalClose}
-            contentLabel='Vip'
-            ariaHideApp={true}
-        >
-            <i className={`closeModalButton fas fa-times`} onClick={onModalClose}></i>
-            {/* <button className="modalButton" onClick={onModalClose}>X</button> */}
-            <Vip vip={vip} responsableId={responsableId}></Vip>
-        </Modal>
-
+        <VipEdit vip={vip} categoriesAccompagnant={categoriesAccompagnant} joueurs={joueurs}/>
     </>)
 }
 
@@ -46,7 +22,7 @@ export async function getServerSideProps ({ req, params: { id } }) {
 
         //fetch categorie
         const resCategorie = await axios.get(`/proxy/categorie_accompagnants/${res.data.categorie.split('/').slice(-1)}`, { headers: { 'cookie': req.headers.cookie } }).catch(e => console.log('erreur'))
-        if (resCategorie?.data['id']) res.data.categorie = resCategorie.data.label
+        if (resCategorie?.data['id']) res.data.categorie = resCategorie.data
     }
     else if (res.data['@type'] === 'Joueur') {
         const accompagnants = res.data.accompagnants.map(accompagnant => accompagnant.split('/').slice(-1)[0])
@@ -57,18 +33,19 @@ export async function getServerSideProps ({ req, params: { id } }) {
         }
     }
 
-    // fetch suivis
-    const suivis = res.data.suivis.map(suivi => suivi.split('/').slice(-1)[0])
-    res.data.suivis = []
-    for (const suivi of suivis) {
-        const resSuivi = await axios.get(`/proxy/suivis/${suivi}`, { headers: { 'cookie': req.headers.cookie } }).catch(e => console.log('erreur'))
-        if (resSuivi?.data['id']) res.data.suivis.push(resSuivi.data)
-    }    
+    const categoriesAccompagnant = await axios.get('/proxy/categorie_accompagnants', { headers: { 'cookie': req.headers.cookie } }).catch(e => console.log('erreur'))
+    if (!categoriesAccompagnant?.data['hydra:member']) return { redirect: { destination: '/auth/login' } }
+
+    const joueurs = await axios.get('/proxy/joueurs', { headers: { 'cookie': req.headers.cookie } }).catch(e => console.log('erreur'))
+    if (!joueurs?.data['hydra:member']) return { redirect: { destination: '/auth/login' } }
+
+    console.log(res.data)
 
     return {
         props: {
+            joueurs: joueurs.data['hydra:member'],
             vip: res.data,
-            responsableId: req.cookies.responsable_id
+            categoriesAccompagnant: categoriesAccompagnant.data['hydra:member']
         }
     }
 }

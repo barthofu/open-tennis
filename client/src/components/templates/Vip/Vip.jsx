@@ -2,11 +2,10 @@ import SuivisRow from "@elements/SuivisRow/SuivisRow"
 import List from "@modules/List/List"
 import SuivisForm from "@modules/SuivisForm/SuivisForm"
 import Link from "next/link"
-import { useEffect } from "react"
 import styles from "./Vip.module.scss"
 
 export default function Vip ({ vip, responsableId }) {
-    
+
     return (<>
         <div className={styles.container}>
         
@@ -20,8 +19,14 @@ export default function Vip ({ vip, responsableId }) {
 
                 <section className={styles.utils}>
                     <h1 className={styles.name}>{vip.prenom} {vip.nom.toUpperCase()}</h1>
-                    <div className={styles.age}>{vip.age} ans</div>
-                    <div className={styles.nationalite}>{vip.nationalite}</div>
+                    <div>
+                        <span className={styles.age}>{vip.age} ans </span>
+                         - 
+                        <span className={styles.nationalite}> {vip.nationalite}</span>
+                    </div>
+
+                    <div className={styles.priseEnCharge}>Prise en charge : <span>{vip.priseEnCharge}</span></div>
+                    
 
                     { vip['@type'] === 'Joueur' && <>
                         <div className={styles.classementATP}>#{vip.classementATP}</div>
@@ -34,21 +39,26 @@ export default function Vip ({ vip, responsableId }) {
                             )}
                         </div>
                     </> }
-                    { vip['@type'] === 'Accompagnant' && 
+                    { vip['@type'] === 'Accompagnant' && <>
+                        <div className={styles.categorie}>{vip.categorie}</div>
                         <div className={styles.accompagne}>
                             Accompagne : 
                             <Link href={`/dashboard/vips/${vip.accompagne.id}`}>
                                 <a>{vip.accompagne.nom.slice(0, 1)}. {vip.accompagne.prenom}</a>
                             </Link>
                         </div>
+                        </>
                     }
                 </section>
 
-                <span className={styles.separator}></span>
+                { vip.description && vip.description !== "" ? <>
+                    <span className={styles.separator}></span>
 
-                <section className={styles.description}>
-                    {vip.description}
-                </section>
+                    <section className={styles.description}>
+                        {vip.description}
+                    </section> </>:
+                    ''
+                }
 
             </div>
 

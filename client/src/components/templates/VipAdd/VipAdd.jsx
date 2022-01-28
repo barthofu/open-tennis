@@ -1,10 +1,9 @@
 import styles from './VipAdd.module.scss'
 import VipForm from '@modules/VipForm/VipForm'
-import Router from 'next/router'
 
-export default function VipAdd ({ joueurs }) {
+export default function VipAdd ({ joueurs, categoriesAccompagnant }) {
 
     return (<>
-        <VipForm joueurs={joueurs}/>
+        <VipForm joueurs={joueurs} categoriesAccompagnant={categoriesAccompagnant}/>
     </>)
 }

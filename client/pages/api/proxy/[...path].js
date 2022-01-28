@@ -17,10 +17,9 @@ export default async function handler (req, res) {
 	// re-écriture de l'URL
 	const url = req.url.replace('proxy/', '')
 
-	// on définit le header d'autorisation
-	if (token) {
-		headers['Authorization'] = `Bearer ${token}`
-	}
+	// on définit les headers
+	if (token) headers['Authorization'] = `Bearer ${token}`
+	if (req.headers['content-type'] === 'application/merge-patch+json') headers['Content-Type'] = 'application/merge-patch+json'
 
 	try {
 
@@ -73,6 +72,8 @@ export default async function handler (req, res) {
 			// 	}
 			//}
 		}
+
+		console.log(err)
 
 		return res.json(err.toJSON())
 	}

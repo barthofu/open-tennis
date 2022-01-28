@@ -84,10 +84,6 @@
                     z-index: 1;
                 }
 
-                .name {
-                    
-                }
-
                 .classementATP {
 
                     z-index: 0;
@@ -100,24 +96,30 @@
                     font-weight: bolder;
                 }
 
-                .accompagnants {
+                .priseEnCharge {
 
-                    .accompagnant {
-
-                        margin: .2rem;
-                        padding: .2rem .5rem;
-                        border-radius: .3rem;
-                        background: $primaryBackground;
-
-                        transition: .2s linear;
-
-                        &:hover {
-
-                            background: $primaryText;
-                            color: $primaryBackground;
-                        }
+                    span {
+                        color: green;
+                        font-weight: bold;
                     }
                 }
+
+                .accompagnant, .accompagne a {
+
+                    margin: .2rem;
+                    padding: .2rem .5rem;
+                    border-radius: .3rem;
+                    background: $primaryBackground;
+
+                    transition: .2s linear;
+
+                    &:hover {
+
+                        background: $primaryText;
+                        color: $primaryBackground;
+                    }
+                }
+                
             }
         }
 
